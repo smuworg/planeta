@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> //Document// </title>
+    <title> <?php bloginfo( 'name' ); ?> </title>
 
     <meta property="og:title" content=" //Page title// "/>
     <meta property="og:description" name="description" content=" //Page Description// "/>
@@ -20,5 +20,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="./css/style.css">
     <!-- endinject -->
+    <?php wp_head(); ?>
 </head>
 <body>

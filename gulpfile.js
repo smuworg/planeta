@@ -52,13 +52,30 @@ function scripts() {
 
 function injectStyle() {
     var jsonCss = JSON.parse(fs.readFileSync(folder.dest + 'css/rev-manifest.json'));
-    var jsonJs = JSON.parse(fs.readFileSync(folder.dest + 'js/rev-manifest.json'));
-
-    var target = gulp.src(folder.dest + '*.php');
-    var source = gulp.src(['./css/' + jsonCss['style.css'], './js/' + jsonJs['main.js']], { read: false, cwd: __dirname + '/' });
+    var target = gulp.src(folder.dest + '*header.php');
+    var source = gulp.src('./css/' + jsonCss['style.css'], { read: false, cwd: __dirname + '/' });
 
     return target
-        .pipe(inject(source, { addRootSlash: false }))
+        .pipe(inject(source, {
+            transform: function (filePath) {
+                return '<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>' + filePath  + '" />';
+            }
+        }))
+        .pipe(gulp.dest(folder.dest));
+}
+
+function injectScripts() {
+    var jsonJs = JSON.parse(fs.readFileSync(folder.dest + 'js/rev-manifest.json'));
+    var target = gulp.src(folder.dest + 'footer.php');
+    var source = gulp.src('./js/' + jsonJs['main.js'], { read: false, cwd: __dirname + '/' });
+
+
+    return target
+        .pipe(inject(source, {
+            transform: function (filePath) {
+                return '<script src="<?php echo get_template_directory_uri(); ?>' + filePath  + '"></script>';
+            }
+        }))
         .pipe(gulp.dest(folder.dest));
 }
 
@@ -73,20 +90,21 @@ function appVersion() {
 
 function watchFiles() {
     browserSync.init({
-        server: {
-            baseDir: folder.dest
-        }
+        proxy: "localhost/project"
     });
 
     gulp.watch(folder.src + 'php/**', html);
-    gulp.watch(folder.src + 'js/*', scripts);
-    gulp.watch(folder.src + 'less/*.less', style);
+    gulp.watch(folder.src + 'js/*', gulp.series(scripts, injectScripts) );
+    gulp.watch(folder.src + 'less/*.less', gulp.series(style, injectStyle) );
     gulp.watch(folder.src + 'images/**', images);
     gulp.watch(folder.src).on('change', browserSync.reload);
 }
 
 function cleaning() {
-    return gulp.src([folder.dest + 'css/style.css', folder.dest + 'css/rev-manifest.json', folder.dest + 'js/main.js', folder.dest + 'js/rev-manifest.json'])
+    return gulp.src([
+            folder.dest + 'css/*', folder.dest + 'css/*.json',
+            folder.dest + 'js/*', folder.dest + 'js/*.json'
+        ])
         .pipe(clean());
 }
 
@@ -96,5 +114,6 @@ exports.style = style;
 exports.scripts = scripts;
 exports.appVersion = appVersion;
 exports.watchFiles = watchFiles;
-exports.build  = gulp.series(html, style, images, scripts, injectStyle, appVersion, cleaning, watchFiles);
-exports.default = gulp.series(html, style, images, scripts, watchFiles);
+exports.build  = gulp.series(html, cleaning, style, scripts, images, injectStyle, injectScripts, appVersion);
+exports.watch = gulp.series(html, cleaning, style, scripts, images, injectStyle, injectScripts, watchFiles);
+exports.default = gulp.series(html, cleaning, style, scripts, images, injectStyle, injectScripts, watchFiles);
