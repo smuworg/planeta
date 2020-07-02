@@ -1,0 +1,133 @@
+.footer {
+  background: @blue;
+  padding: 40px 40px 25px;
+
+  &--narrow {
+    max-width: 1216px;
+    margin: auto;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+
+    @media only screen and (max-width: 425px) {
+      flex-direction: column;
+      align-items: center
+    }
+  }
+
+  &__separator {
+    height: 2px;
+    background: rgba(254, 254, 254, 0.2);
+    border: none;
+
+    @media only screen and (max-width: 768px) {
+      transform: translateY(75px);
+    }
+  }
+
+  &__meta {
+    position: relative;
+    display: flex;
+    margin-top: 16px;
+    color: @white-tint;
+    font-size: 12px;
+    font-family: @thirdFont;
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center
+    }
+  }
+
+  &__copy {
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__nav {
+    .menu {
+      list-style: none;
+      display: flex;
+
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .menu-item {
+      margin-left: 32px;
+      position: relative;
+
+      @media only screen and (max-width: 768px) {
+        margin-left: 0;
+        margin-bottom: 15px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -16px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(254, 254, 254, 0.2);
+
+        @media only screen and (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 425px) {
+    margin-top: 15px;
+  }
+
+  &__item {
+    box-sizing: content-box;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid rgba(254, 254, 254, 0.4);
+    border-radius: 50%;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+  }
+
+  &__image {
+    max-height: 16px;
+    max-width: 16px;
+  }
+}
+
+.smuw-icon {
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+  opacity: 0.4;
+  line-height: 1;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+}

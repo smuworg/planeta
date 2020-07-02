@@ -18,7 +18,7 @@
 
     <link href=" //page favicon// " rel="shortcut icon"/>
     <!-- inject:css -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/style-7e9f0ec526.css" />
     <!-- endinject -->
     <?php wp_head(); ?>
 </head>

@@ -39,7 +39,7 @@
     </body>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- inject:js -->
-    <script src="./js/main.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/main-4b265746b8.js"></script>
     <!-- endinject -->
 <?php wp_footer(); ?>
 </html>

@@ -17,6 +17,8 @@ const folder = {
     dest: './'
 };
 
+const xamppFolderUrl = 'localhost/planetagracza';
+
 function html() {
     return gulp.src(folder.src + 'php/**/*')
         .pipe(gulp.dest(folder.dest))
@@ -90,10 +92,10 @@ function appVersion() {
 
 function watchFiles() {
     browserSync.init({
-        proxy: "localhost/project"
+        proxy: xamppFolderUrl
     });
 
-    gulp.watch(folder.src + 'php/**', html);
+    gulp.watch(folder.src + 'php/**', gulp.series(html, style, injectStyle, scripts, injectScripts));
     gulp.watch(folder.src + 'js/*', gulp.series(scripts, injectScripts) );
     gulp.watch(folder.src + 'less/*.less', gulp.series(style, injectStyle) );
     gulp.watch(folder.src + 'images/**', images);
