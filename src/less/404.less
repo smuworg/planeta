@@ -1,0 +1,53 @@
+.notfound {
+  width: 100%;
+  background: url(../images/bg-arrows.svg) center no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+
+  &__subtitle {
+    line-height: 1;
+    letter-spacing: 0.48px;
+    font-size: 12px;
+  }
+
+  &__title {
+    font-size: 28px;
+    margin-bottom: 80px;
+  }
+
+  &__image {
+    max-width: 480px;
+    margin-bottom: 80px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__info {
+    text-align: center;
+    line-height: 1.44;
+    letter-spacing: normal;
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    color: @red;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+
+    input {
+      width: 820px;
+      padding: 5px 18px;
+      border: solid 2px rgba(0, 0, 0, 0.04);
+      margin-right: 16px;
+    }
+  }
+}
