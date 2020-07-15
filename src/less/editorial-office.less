@@ -1,0 +1,80 @@
+.editorial-office {
+    padding: 0 80px;
+    color: @blue;
+
+    &__title {
+        .heading;
+        text-transform: uppercase;
+        font-size: 28px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+    &__desc {
+        margin-bottom: 40px;
+        margin-left: 20px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__person {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+    
+        &-photo {
+            width: 284px;
+            margin-right: 24px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        &-content {
+            width: calc(100% - 310px);
+
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &-name {
+            .heading;
+            width: 100%;
+            margin-top: 32px;;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        &-email, &-phone {
+            margin-right: 25px;
+            font-family: @thirdFont;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 26px;
+
+            padding-left: 25px;
+        }
+
+        &-email {
+            background: url(../images/mail-icon.svg) no-repeat;
+            background-position: 0 center;
+            background-size: 16px 12px;
+        }
+
+        &-phone {
+            background: url(../images/phone-icon.svg) no-repeat;
+            background-position: 8px center;
+            background-size: 10px 16px;
+        }
+
+        &-desc {
+            font-size: 18px;
+            font-weight: normal;
+        }
+    }
+} 
